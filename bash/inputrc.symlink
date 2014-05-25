@@ -1,0 +1,24 @@
+# [Shift +] Tab auto-complete args
+TAB: menu-complete
+"\e[Z": "\e-1\C-i"
+
+"\C-d": kill-whole-line
+
+# Up/Down search through history
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+# ALT + Left/Right to jump words
+"\e\e[D": backward-word
+"\e\e[C": forward-word
+
+set input-meta on
+set output-meta on
+set convert-meta off
+
+set completion-ignore-case on
+set expand-tilde on
+
+set show-all-if-ambiguous on
+set visible-stats on
+set -o vi

@@ -1,0 +1,20 @@
+[user]
+	name = radnan
+	email = rafiadnan47@gmail.com
+[merge]
+	conflictstyle = diff3
+[alias]
+	br = branch
+	st = status
+	ci = commit
+	co = checkout
+	lg = log --graph --format='%C(yellow)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(blue)<%an>%Creset'
+	spp = !git stash && git pull && git stash pop
+	remotes = remote -v
+	tags = !git tag -l | sort -V
+[color]
+	ui = auto
+[push]
+	default = simple
+[pull]
+	rebase = true

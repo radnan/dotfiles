@@ -1,0 +1,114 @@
+" General
+set cpo+=I
+set enc=utf-8
+set so=2 " min lines above and below  cursor 
+set backspace=indent,eol,start " enable backspace everywhere
+set number " line numbers
+set noerrorbells
+set si " smart indenting
+set sta " smartab
+set mouse=a " enable mouse for everything
+set sw=4 ts=4 " set tab to 4
+set ic scs hls " case-insensitive, smart case search, highlighting
+set wildmenu " advanced command-line tab-complete
+
+" File format hinting
+au BufNewFile,BufRead *.conf set ft=dosini
+au BufNewFile,BufRead *.json set ft=javascript
+au BufNewFile,BufRead *.php.*,*.phps,*.phtml,*.module set ft=php
+au BufNewFile,BufRead *.xslt set ft=xslt
+au BufNewFile,BufRead *.twig set ft=twig
+
+" File explorer
+let g:explDetailedList = 1
+let g:explVertical = 1
+
+" Key bindings
+map <F2> ]p<Up>dd
+map <F7> :tabp<CR>
+map <F8> :tabn<CR>
+map <F11> :set paste mouse= nonu<CR>
+map <F12> :set nopaste mouse=a nu<CR>
+map gf :tabe <cfile><CR>
+nmap <C-Left> :tabp<CR>
+nmap <C-Right> :tabn<CR>
+if exists("*SmartHome") == 0
+	function SmartHome()
+		let s:col = col(".")
+		normal! ^
+		if s:col == col(".")
+			normal! 0
+		endif
+	endfunction
+end
+nmap <silent> <Home> :call SmartHome()<CR>
+imap <silent> <Home> <C-O>:call SmartHome()<CR>
+map <C-A> ggVG
+map Y y$
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
+
+" Theme
+syntax enable
+colorscheme solarized
+set foldmethod=marker
+
+" auto-insert matching brackets {{{
+function! BracketComplete(brace)
+	let bracedef = {'(' : ')', '[': ']', '<': '>', '"': '"', "'": "'"}
+	let char = strpart(getline('.'), col('.') - 1, 1)
+	if char == a:brace && has_key(bracedef, a:brace) == 0
+		return "\<Right>"
+	elseif has_key(bracedef, a:brace)
+		return a:brace . bracedef[a:brace] . "\<Left>"
+	else
+		return a:brace
+	endif
+endfunction
+let lang_brackets = {'javascript,php': ['(', ')', '[', ']'], 'html,php,xml,xslt': ['<', '>'], 'html,javascript,php,xml,xslt': ['"', "'"]}
+for lang in keys(lang_brackets)
+	for brace in lang_brackets[lang]
+		if (brace == '"')
+			exec "autocmd FileType " . lang . " inoremap " . brace . " \<C-R>=BracketComplete('" . brace . "')\<CR>"
+		else
+			exec "autocmd FileType " . lang . " inoremap " . brace . " \<C-R>=BracketComplete(\"" . brace . "\")\<CR>"
+		endif
+	endfor
+endfor
+function! DeleteBracket()
+	let bracedef = {'(' : ')', '[': ']', '<': '>', '"': '"', "'": "'"}
+	let char_open = strpart(getline('.'), col('.') - 2, 1)
+	let char_close = strpart(getline('.'), col('.') - 1, 1)
+	if has_key(bracedef, char_open) && char_close == bracedef[char_open]
+		return "\<BS>\<Right>\<BS>"
+	else
+		return "\<BS>"
+	endif
+endfunction
+autocmd FileType html,javascript,php,xml,xslt imap <BS> <C-R>=DeleteBracket()<CR>
+" }}}
+
+" auto-complete curly braces {{{
+function! BraceComplete()
+	let str = getline(line('.') - 1)
+	let now_str = getline(line('.'))
+	let char = col('.')
+	if char > 1
+		let char = char - 1
+	endif
+	if (&ft == 'javascript') && strpart(getline('.'), 0, char) =~ 'function([^)]*)$'
+		return "\<CR>{\<CR>}\<Up>\<CR>"
+	elseif (str =~ 'function [^(]\+(' || str =~ '^\s*else$' || str =~ '^\s*\(if\|else \?if\|while\|for\|foreach\|switch\) (') && now_str =~ '^\s*$'
+		return "{\<CR>}\<up>\<CR>"
+	else
+		return "{"
+	endif
+endfunction
+autocmd FileType javascript,php inoremap { <C-R>=BraceComplete()<CR>
+autocmd FileType css inoremap { {<CR>}<ESC>O
+" }}}
+
+" auto-insert misc stuff
+" autocmd FileType css inoremap : :<SPACE>;<Left>
