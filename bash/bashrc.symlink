@@ -14,6 +14,9 @@ PURPLE="\[\033[0;35m\]"
 CYAN="\[\033[0;36m\]"
 PS1="${RED}\@ ${GREEN}\u@\h ${BLUE}\w${PURPLE}\$(__git_ps1) ${WHITE}\nλ "
 
+# Ignore duplicates and commands that start with spaces
+export HISTCONTROL=ignoreboth
+
 # Always color grep
 export GREP_OPTIONS='--color=auto'
 
