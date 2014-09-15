@@ -27,8 +27,8 @@ let g:explVertical = 1
 map <F2> ]p<Up>dd
 map <F7> :tabp<CR>
 map <F8> :tabn<CR>
-map <F11> :set paste mouse= nonu<CR>
-map <F12> :set nopaste mouse=a nu<CR>
+map <F9> :set nopaste mouse=a nu<CR>
+map <F10> :set paste mouse= nonu<CR>
 map gf :tabe <cfile><CR>
 nmap <C-Left> :tabp<CR>
 nmap <C-Right> :tabn<CR>
