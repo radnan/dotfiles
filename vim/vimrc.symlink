@@ -52,6 +52,7 @@ nmap <silent> <A-Right> :wincmd l<CR>
 
 " Theme
 syntax enable
+set bg=dark
 colorscheme solarized
 set foldmethod=marker
 
