@@ -8,6 +8,7 @@
 	st = status
 	ci = commit
 	co = checkout
+	cp = cherry-pick
 	lg = log --graph --format='%C(yellow)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(blue)<%an>%Creset'
 	spp = !git stash && git pull && git stash pop
 	remotes = remote -v
