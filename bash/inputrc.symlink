@@ -8,13 +8,13 @@ TAB: menu-complete
 "\e[A": history-search-backward
 "\e[B": history-search-forward
 
-# ALT + Left/Right to jump words
-"\e\e[D": backward-word
-"\e\e[C": forward-word
+# Ctrl + Up/Down to jump lines
+"\e[1;5A": beginning-of-line
+"\e[1;5B": end-of-line
 
-set input-meta on
-set output-meta on
-set convert-meta off
+# Ctrl + Left/Right to jump words
+"\e[1;5C": forward-word
+"\e[1;5D": backward-word
 
 set completion-ignore-case on
 set expand-tilde on
