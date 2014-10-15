@@ -8,7 +8,7 @@ set noerrorbells
 set si " smart indenting
 set sta " smartab
 set mouse=a " enable mouse for everything
-set sw=4 ts=4 " set tab to 4
+set sw=4 ts=4 et " set tab to 4 and use spaces
 set ic scs hls " case-insensitive, smart case search, highlighting
 set wildmenu " advanced command-line tab-complete
 
