@@ -26,3 +26,5 @@
 	editor = vim
 [rebase]
 	autostash = true
+[grep]
+	lineNumber = true
