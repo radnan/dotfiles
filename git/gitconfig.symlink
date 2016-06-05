@@ -10,6 +10,9 @@
 	co = checkout
 	cp = cherry-pick
 	lg = log --graph --format='%C(yellow)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(blue)<%an>%Creset'
+	plum = pull upstream master
+	pr = "!git fetch upstream pull/$1/head:pr/$1 && git co pr/$1 #"
+	rpr = "!git co . && git co master && git br -D pr/$1 && git pr $1 #"
 	spp = !git stash && git pull && git stash pop
 	remotes = remote -v
 	tags = tag -l --sort="v:refname"
