@@ -56,7 +56,7 @@ function mysqltabledump()
 # List files after cd
 function cs()
 {
-	cd "$@" && ls
+	builtin cd "$@" && ls
 }
 alias cd="cs"
 
