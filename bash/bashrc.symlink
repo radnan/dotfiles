@@ -16,6 +16,8 @@ PS1="${RED}\@ ${GREEN}\u@\h ${BLUE}\w${PURPLE}\$(__git_ps1) ${WHITE}\nλ "
 
 # Ignore duplicates and commands that start with spaces
 export HISTCONTROL=ignoreboth
+export HISTSIZE=10000
+export HISTFILESIZE=10000
 
 # Always color grep
 export GREP_OPTIONS='--color=auto'
