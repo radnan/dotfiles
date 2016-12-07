@@ -1,14 +1,14 @@
 " General
 set cpo+=I
 set enc=utf-8
-set so=2 " min lines above and below  cursor 
+set so=2 " min lines above and below cursor 
 set backspace=indent,eol,start " enable backspace everywhere
 set number " line numbers
 set noerrorbells
 set si " smart indenting
 set sta " smartab
 set mouse=a " enable mouse for everything
-set sw=2 ts=2 " set tab to 4
+set sw=2 ts=2 et " set tab to 2 and use spaces
 set ic scs hls " case-insensitive, smart case search, highlighting
 set wildmenu " advanced command-line tab-complete
 
