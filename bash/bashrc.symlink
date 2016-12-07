@@ -32,6 +32,8 @@ alias vim='vim -p'
 
 # Helpful tree defaults
 alias tree='tree -F --dirsfirst'
+
+alias pgrep="pgrep -lf"
 alias :q="exit"
 
 function git-tag()
