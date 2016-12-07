@@ -69,3 +69,14 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
 fi
 
 export PROMPT_COMMAND='history -a;history -c;history -r'
+
+_ssh_py() {
+    local cur opts
+
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    local IFS=$'\n'
+    opts=$(ec2inventory --complete --env=\* --cache)
+    COMPREPLY=( $(compgen -W "$opts" -- $cur ) )
+    return 0
+}
+complete -F _ssh_py srv
