@@ -94,6 +94,7 @@ alias lla='ll -a'
 alias la='ls -A'
 alias l='ls -C'
 alias grep='grep --color=auto'
+alias pgrep='pgrep -af'
 
 # Helpful LS_COLORS
 eval `dircolors ~/.dircolors`
