@@ -86,9 +86,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto -F'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
-
-    # Always color grep
-    export GREP_OPTIONS='--color=auto'
 fi
 
 # some more ls aliases
@@ -96,6 +93,7 @@ alias ll='ls -lh'
 alias lla='ll -a'
 alias la='ls -A'
 alias l='ls -C'
+alias grep='grep --color=auto'
 
 # Helpful LS_COLORS
 eval `dircolors ~/.dircolors`
