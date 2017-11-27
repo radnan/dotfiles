@@ -11,7 +11,7 @@
 	cp = cherry-pick
 	lg = log --graph --format='%C(yellow)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(blue)<%an>%Creset'
 	plum = pull upstream master
-	pr = "!BR=$(printf -- \"-%s\" \"$@\") && git fetch upstream pull/$1/head:pr/${BR:1} && git co pr/${BR:1} #"
+	pr = "!BR=$(printf -- \"-%s\" \"$@\" | awk '{print substr($1, 2)}') && git fetch upstream pull/$1/head:pr/$BR && git co pr/$BR #"
 	rpr = "!BR=$(git rev-parse --abbrev-ref HEAD) && ID=$(echo $BR | grep -o \"[0-9]\\+\") && git pull -f upstream pull/$ID/head:$BR #"
 	sco = "!git stash && git co $1 && git stash pop #"
 	spp = !git stash && git pull && git stash pop
