@@ -33,6 +33,8 @@ alias vim='vim -p'
 # Helpful tree defaults
 alias tree='tree -F --dirsfirst'
 
+alias dc='docker-compose'
+
 alias pgrep="pgrep -lf"
 alias :q="exit"
 
@@ -63,6 +65,16 @@ function cs()
 	builtin cd "$@" && ls
 }
 alias cd="cs"
+
+function sst()
+{
+  ssh -nNT -L 127.0.0.1:$1:localhost:$1 radnan@radnan-work-pc
+}
+
+function sst_cmp()
+{
+  concurrently "ssh -nNT -L 127.0.0.1:3000:localhost:3000 radnan@radnan-work-pc" "ssh -nNT -L 127.0.0.1:35729:localhost:35729 radnan@radnan-work-pc"
+}
 
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
 	. $(brew --prefix)/etc/bash_completion
