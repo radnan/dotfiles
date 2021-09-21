@@ -15,5 +15,5 @@ git-stable-pr() {
   git fetch edge pull/$1/head:pr/$BR
   git co pr/$BR
 
-  git rebase --onto stable/master edge/master pr/$BR
+  git rebase --onto stable/master $(git merge-base HEAD edge/master) pr/$BR
 }
