@@ -5,6 +5,7 @@
 	conflictstyle = diff3
 [alias]
 	br = branch
+	brd = "!git br -D $1 && git push origin :$1 #"
 	st = status
 	ci = commit
 	co = checkout
