@@ -76,6 +76,16 @@ function sst_cmp()
   concurrently "ssh -nNT -L 127.0.0.1:3000:localhost:3000 radnan@radnan-work-pc" "ssh -nNT -L 127.0.0.1:35729:localhost:35729 radnan@radnan-work-pc"
 }
 
+_nc_docker_completion() {
+    COMPREPLY=( $( env COMP_WORDS="${COMP_WORDS[*]}" \
+                COMP_CWORD=$COMP_CWORD \
+                _NC_DOCKER_COMPLETE=complete nc-docker ) )
+    return 0
+}
+complete -o default -F _nc_docker_completion nc-docker
+alias ncd="nc-docker"
+complete -o default -F _nc_docker_completion ncd
+
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
 	. $(brew --prefix)/etc/bash_completion
 fi
