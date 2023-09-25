@@ -86,6 +86,11 @@ complete -o default -F _nc_docker_completion nc-docker
 alias ncd="nc-docker"
 complete -o default -F _nc_docker_completion ncd
 
+code-artifact() {
+  code-artifact-token-helper
+  export AWS_CODEARTIFACT_AUTH_TOKEN=$(cat ~/.nc_codeartifact_token)
+}
+
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
 	. $(brew --prefix)/etc/bash_completion
 fi
