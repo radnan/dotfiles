@@ -28,6 +28,7 @@
 [core]
 	editor = vim
 [rebase]
+	autoSquash = true
 	autostash = true
 [grep]
 	lineNumber = true
