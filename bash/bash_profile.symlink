@@ -1,9 +1,11 @@
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:$HOME/.bin:$PATH"
+PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:$HOME/.bin:$PATH"
 PATH="/usr/local/opt/openssl/bin:$PATH"
-MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+MANPATH="/opt/homebrew/opt/coreutils/libexec/gnuman:$MANPATH"
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 [[ -s ~/.bashrc ]] && source ~/.bashrc
 
