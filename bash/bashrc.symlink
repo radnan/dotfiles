@@ -14,18 +14,8 @@ PURPLE="\[\033[0;35m\]"
 CYAN="\[\033[0;36m\]"
 PS1="${RED}\@ ${GREEN}\u@\h ${BLUE}\w${PURPLE}\$(__git_ps1) ${WHITE}\nλ "
 
-# Ignore duplicates and commands that start with spaces
-export HISTCONTROL=ignoreboth
-export HISTSIZE=10000
-export HISTFILESIZE=10000
-
 # Always color grep
 export GREP_OPTIONS='--color=auto'
-
-# Helpful ls aliases/defaults
-alias ls='ls --color=auto -F'
-alias ll='ls -Flh'
-alias lla='ll -a'
 
 # Always use vim tabs
 alias vim='vim -p'
@@ -44,27 +34,10 @@ function git-tag()
 	git push --tags;
 }
 
-# Quickly grep and list search results
-function g()
-{
-	grep -inrI "$@" *
-}
-function gf()
-{
-	g "$@" | gawk -F ':' '{ print $1 }' | sort -u;
-}
-
 function mysqltabledump()
 {
 	mysqldump $1 `mysql $1 -AN -e "select group_concat(table_name separator ' ') from information_schema.tables where table_name like '$2'"`
 }
-
-# List files after cd
-function cs()
-{
-	builtin cd "$@" && ls
-}
-alias cd="cs"
 
 function sst()
 {
@@ -76,26 +49,9 @@ function sst_cmp()
   concurrently "ssh -nNT -L 127.0.0.1:3000:localhost:3000 radnan@radnan-work-pc" "ssh -nNT -L 127.0.0.1:35729:localhost:35729 radnan@radnan-work-pc"
 }
 
-_nc_docker_completion() {
-    COMPREPLY=( $( env COMP_WORDS="${COMP_WORDS[*]}" \
-                COMP_CWORD=$COMP_CWORD \
-                _NC_DOCKER_COMPLETE=complete nc-docker ) )
-    return 0
-}
-complete -o default -F _nc_docker_completion nc-docker
-alias ncd="nc-docker"
-complete -o default -F _nc_docker_completion ncd
-
-code-artifact() {
-  code-artifact-token-helper
-  export AWS_CODEARTIFACT_AUTH_TOKEN=$(cat ~/.nc_codeartifact_token)
-}
-
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
 	. $(brew --prefix)/etc/bash_completion
 fi
-
-export PROMPT_COMMAND='history -a;history -c;history -r'
 
 _ssh_py() {
     local cur opts
