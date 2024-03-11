@@ -2,7 +2,7 @@
 	name = Rafi Adnan
 	email = rafi.adnan@optimizely.com
 [merge]
-	conflictstyle = diff3
+	conflictstyle = zdiff3
 [alias]
 	br = branch
 	brd = "!git br -D $1 && git push origin :$1 #"
@@ -33,5 +33,8 @@
 	autostash = true
 [grep]
 	lineNumber = true
+[diff]
+	algorithm = histogram
+	colorMoved = default
 [fetch]
 	prune = true
