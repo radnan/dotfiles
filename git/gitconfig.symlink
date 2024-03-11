@@ -23,6 +23,7 @@
 	ui = auto
 [push]
 	default = simple
+	autoSetupRemote = true
 [pull]
 	rebase = true
 [core]
@@ -32,3 +33,5 @@
 	autostash = true
 [grep]
 	lineNumber = true
+[fetch]
+	prune = true
